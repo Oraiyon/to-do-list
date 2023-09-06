@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
-    <script src="index.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
 <script defer src="main.js"></script></head>
 <body>
-    <h1>Hello</h1>
+    <div class="container">
+        <div class="sidebar">
+            <h1>To Do List</h1>
+            <div class="projects"></div>
+            <button class="addProject">+ Add Project</button>
+        </div>
+        <div class="main">
+            <div class="projectName"></div>
+            <div class="projectDescription"></div>
+            <div class="tasks"></div>
+            <button class="addTask">+ Add Task</button>
+        </div>
+    </div>
 </body>
 </html>
