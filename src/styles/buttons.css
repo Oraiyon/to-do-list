@@ -12,11 +12,28 @@ button{
     background-color: var(--primary);
 }
 
-button:hover{
+.main button:hover,
+.sidebar button:hover{
     background-color: var(--hover);
 }
 
 .addProject::first-letter, .addTask::first-letter{
     color: var(--accent);
     font-size: 1.4rem;
+}
+
+.modalAdd{
+    background-color: rgb(14, 190, 14);
+}
+
+.modalAdd:hover{
+    background-color: rgb(8, 116, 8);
+}
+
+.modalCancel{
+    background-color: var(--accent);
+}
+
+.modalCancel:hover{
+    background-color: rgb(211, 12, 12);
 }
