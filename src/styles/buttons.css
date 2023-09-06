@@ -1,0 +1,22 @@
+button{
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.sidebar button{
+    background-color: var(--secondary);
+}
+
+.main button{
+    background-color: var(--primary);
+}
+
+button:hover{
+    background-color: var(--hover);
+}
+
+.addProject::first-letter, .addTask::first-letter{
+    color: var(--accent);
+    font-size: 1.4rem;
+}
