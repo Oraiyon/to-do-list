@@ -1,4 +1,4 @@
-import { makeProject, projects} from "../main";
+import { makeProject, addProjectToProjects} from "../main";
 
 const addProject= document.querySelector(".addProject");
 const formModal= document.querySelector(".formModal");
@@ -27,12 +27,9 @@ const closeModal = () => {
 };
 
 export const submitModalButton= modalAdd.addEventListener("click", (e) => {
-    let project1= makeProject(modalName.value, modalDescription.value);
-    addProjectToProjects(project1);
+    let project= makeProject(modalName.value, modalDescription.value);
+    addProjectToProjects(project);
     e.preventDefault();
+    formModal.reset();
     closeModal();
 });
-
-const addProjectToProjects= (project) => {
-    projects.push(project);
-};
