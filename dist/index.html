@@ -6,14 +6,16 @@
     <title>To-Do List</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 <script defer src="bundled.js"></script></head>
 <body>
     <div class="container">
         <div class="sidebar">
-            <h1>To Do List</h1>
-            <div class="projects"></div>
-            <button class="addProject">+ Add Project</button>
+            <div class="inner">
+                <h1>Projects</h1>
+                <div class="projectCards"></div>
+                <button class="addProject">+ Add Project</button>
+            </div>
         </div>
         <div class="main">
             <div class="projectName"></div>
@@ -22,19 +24,18 @@
             <button class="addTask">+ Add Task</button>
         </div>
     </div>
-    <section class="modal hidden">
+    <form class="formModal" action="" method="">
         <div class="modalName">
-            <input type="text" id="modalName" placeholder="Project Name" maxlength="20">
+            <input type="text" id="modalName" name="projectName" placeholder="Project Name" required maxlength="20">
         </div>
         <div class="modalDescription">
-            <input type="text" id="modalDescription" placeholder="Project Description" maxlength="20">
+            <textarea id="modalDescription" name="projectDescription" placeholder="Project Description" rows="2" required></textarea>
         </div>
         <div class="modalButtons">
-            <button class="modalAdd">Add Project</button>
+            <button class="modalAdd" type="submit">Add Project</button>
             <button class="modalCancel">Cancel</button>
         </div>
-    </section>
-    <div class="overlay hidden"></div>
-    <button class="btn btn-open"></button>
+    </form>
+    <div class="overlay"></div>
 </body>
 </html>
