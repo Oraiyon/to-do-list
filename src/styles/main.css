@@ -3,17 +3,11 @@
     padding: 0;
     font-family: 'Rubik', sans-serif;
     box-sizing: border-box;
-    font-size: 1.2rem;
     --primary: rgb(70, 70, 70);
     --secondary: rgb(88, 88, 88);
     --accent: rgb(236, 14, 14);
     --hover: rgb(131, 129, 129);
     color: white;
-}
-
-h1{
-    font-size: 1.8rem;
-    margin-top: 20px;
 }
 
 .container{
@@ -23,5 +17,18 @@ h1{
 
 .main{
     background-color: var(--primary);
-    width: 80%;
+    width: 75%;
+}
+
+.main button{
+    background-color: var(--primary);
+}
+
+.main button:hover{
+    background-color: var(--hover);
+}
+
+.addTask::first-letter{
+    color: var(--accent);
+    font-size: 1.4rem;
 }
