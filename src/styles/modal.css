@@ -1,0 +1,69 @@
+.formModal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding: 80px;
+    background-color: var(--secondary);
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    bottom: 50%;
+    margin: auto;
+    width: 750px;
+    min-height: fit-content;
+    z-index: 2;
+    display: none;
+}
+
+.formModal input, .formModal textarea{
+    border-radius: 4px;
+    background-color: var(--primary);
+    width: 100%;
+    font-size: 2rem;
+    line-height: 50px;
+    padding-left: 4px;
+    border: 2px solid white;
+}
+
+.formModal input:focus{
+    background-color: var(--secondary);
+}
+
+.formModal button{
+    background-color: var(--primary);
+    border: 2px solid white;
+    height: 75px;
+    width: 49%;
+    font-size: 1.5rem;
+}
+
+.modalButtons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.modalAdd:hover{
+    background-color: rgb(15, 211, 15);
+}
+
+.modalCancel:hover{
+    background-color: var(--accent);
+}
+
+.overlay{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(.5px);
+    z-index: 1;
+    display: none;
+}
