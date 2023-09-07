@@ -4,7 +4,7 @@ const addProject= document.querySelector(".addProject");
 const formModal= document.querySelector(".formModal");
 const overlay= document.querySelector(".overlay");
 const modalCancel= document.querySelector(".modalCancel");
-const modalAdd= document.querySelector(".modalAdd");
+export const modalAdd= document.querySelector(".modalAdd");
 const modalName= document.querySelector("#modalName");
 const modalDescription= document.querySelector("#modalDescription");
 
