@@ -30,5 +30,5 @@
 
 .addTask::first-letter{
     color: var(--accent);
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
