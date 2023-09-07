@@ -22,19 +22,18 @@
             <button class="addTask">+ Add Task</button>
         </div>
     </div>
-    <section class="modal hidden">
+    <form class="formModal" action="" method="">
         <div class="modalName">
-            <input type="text" id="modalName" placeholder="Project Name" maxlength="20">
+            <input type="text" id="modalName" name="projectName" placeholder="Project Name" required maxlength="20">
         </div>
         <div class="modalDescription">
-            <input type="text" id="modalDescription" placeholder="Project Description" maxlength="20">
+            <textarea id="modalDescription" name="projectDescription" placeholder="Project Description" rows="2" required></textarea>
         </div>
         <div class="modalButtons">
-            <button class="modalAdd">Add Project</button>
+            <button class="modalAdd" type="submit">Add Project</button>
             <button class="modalCancel">Cancel</button>
         </div>
-    </section>
-    <div class="overlay hidden"></div>
-    <button class="btn btn-open"></button>
+    </form>
+    <div class="overlay"></div>
 </body>
 </html>
