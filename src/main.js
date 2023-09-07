@@ -1,7 +1,10 @@
 import "./styles/main.css";
-import "./styles/buttons.css";
-import { addProjectButton } from "./scripts/sideBar";
+import "./styles/sideBar.css";
+import "./styles/modal.css";
+import { addProjectButton, closeModalButton, submitModalButton } from "./scripts/modal";
 
-const makeProject = (title, description) => {
+export const projects=[];
+
+export const makeProject = (title, description) => {
     return {title, description};
 };
