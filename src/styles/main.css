@@ -18,17 +18,111 @@
 .main{
     background-color: var(--primary);
     width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main button{
+    width: fit-content;
 }
 
 .main button{
     background-color: var(--primary);
 }
 
-.main button:hover{
+.addTask:hover{
     background-color: var(--hover);
+}
+
+.addTask{
+    margin-top: 20px;
+    align-self: flex-end;
 }
 
 .addTask::first-letter{
     color: var(--accent);
     font-size: 1.5rem;
+}
+
+.noProject{
+    margin: auto auto;
+    font-size: 2rem;
+}
+
+.inside{
+    width: 93%;
+    display: flex;
+    flex-direction: column;
+}
+
+.projectName h2{
+    font-size: 2.5rem;
+    padding-top: 20px;
+}
+
+.projectDescription div{
+    font-size: 1.5rem;
+    padding-bottom: 20px;
+    border-bottom: 2px solid white;
+}
+
+.tasks{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tasks div{
+    width: 100%;
+    background-color: var(--secondary);
+}
+
+.taskForm{
+    display: none;
+    align-items: center;
+    gap: 40px;
+    padding: 10px;
+    background-color: var(--secondary);
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.taskForm input{
+    background-color: var(--primary);
+    border: none;
+}
+
+.taskForm input::placeholder{
+    color: white;
+}
+
+.taskInputs{
+    display: flex;
+    flex: 1;
+    gap: 10px;
+}
+
+#taskDescription, #dueDate, .submitTask, .cancelTask{
+    font-size: 1.25rem;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#taskDescription{
+    flex: 1;
+}
+
+.taskButtons{
+    display: flex;
+    gap: 10px;
+}
+
+.submitTask:hover{
+    background-color: rgb(15, 211, 15);
+}
+
+.cancelTask:hover{
+    background-color: var(--accent);
 }
