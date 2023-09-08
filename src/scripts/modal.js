@@ -1,4 +1,4 @@
-import { makeProject, addProjectToProjects} from "../main";
+import { makeProject, addProjectToProjects} from "../index";
 
 const addProject= document.querySelector(".addProject");
 const formModal= document.querySelector(".formModal");
