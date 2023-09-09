@@ -13,6 +13,7 @@ export const projectDescription= document.querySelector(".projectDescription");
 export const tasks= document.querySelector(".tasks");
 export const taskForm= document.querySelector(".taskForm");
 export const cancelTaskForm= document.querySelector(".cancelTask");
+export const taskDescription= document.querySelector(".taskDescription");
 
 export const projects=[];
 
@@ -22,10 +23,9 @@ export const makeProject = (title, description) => {
 
 checkProjectEmpty();
 
-//Try removing this () from modal.js
 export const addProjectToProjects= (project) => {
     projects.push(project);
+    displayCurrentProject(project);
     displayProjects();
-    displayCurrentProject();
     checkProjectEmpty();
 };
