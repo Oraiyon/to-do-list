@@ -22,8 +22,6 @@ export const displayCurrentProject = () => {
     closeTaskForm();
 };
 
-//CLOSING TASK FORM ERASES PROJECT CARD
-
 const displayTitle = () => {
     const currentTitle= document.createElement("h2");
     currentTitle.innerText= projects[projects.length-1].title;
@@ -49,14 +47,16 @@ const displayCurrentTasks = () => {
 };
 
 const addingNewTask= () => {
-    addTask.addEventListener("click", () => {
+    addTask.addEventListener("click", (e) => {
+        e.preventDefault();
         addTask.setAttribute("style", "display:none;");
         taskForm.setAttribute("style", "display:flex;");
     });
 };
 
 const closeTaskForm= () => {
-    cancelTaskForm.addEventListener("click", () => {
+    cancelTaskForm.addEventListener("click", (e) => {
+        e.preventDefault();
         addTask.setAttribute("style", "display:;");
         taskForm.setAttribute("style", "display:none;");
     });
