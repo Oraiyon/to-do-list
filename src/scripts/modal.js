@@ -17,7 +17,8 @@ const openModal = () => {
     overlay.setAttribute("style", "display:flex;");
 };
 
-export const closeModalButton= modalCancel.addEventListener("click", () => {
+export const closeModalButton= modalCancel.addEventListener("click", (e) => {
+    e.preventDefault();
     closeModal();
 });
 
