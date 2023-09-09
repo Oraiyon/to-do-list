@@ -1,4 +1,4 @@
-import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, cancelTaskForm } from "../index";
+import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, cancelTaskForm, taskDescription } from "../index";
 import { modalAdd } from "./modal";
 
 const noProject= document.createElement("h2");
@@ -14,26 +14,26 @@ export const checkProjectEmpty = () => {
     };
 };
 
-export const displayCurrentProject = () => {
-    displayTitle();
-    displayDescription();
+export const displayCurrentProject = (project) => {
+    displayTitle(project);
+    displayDescription(project);
     displayCurrentTasks();
-    addingNewTask();
+    addTaskForm();
     closeTaskForm();
 };
 
-const displayTitle = () => {
+const displayTitle = (project) => {
     const currentTitle= document.createElement("h2");
-    currentTitle.innerText= projects[projects.length-1].title;
+    currentTitle.innerText= project.title;
     modalAdd.addEventListener("click", () => {
         currentTitle.remove();
     });
     projectName.appendChild(currentTitle);
 };
 
-const displayDescription = () => {
+const displayDescription = (project) => {
     const currentDescription= document.createElement("div");
-    currentDescription.innerText= projects[projects.length-1].description;
+    currentDescription.innerText= project.description;
     modalAdd.addEventListener("click", () => {
         currentDescription.remove();
     });
@@ -46,7 +46,7 @@ const displayCurrentTasks = () => {
     tasks.appendChild(currentTasks);
 };
 
-const addingNewTask= () => {
+const addTaskForm= () => {
     addTask.addEventListener("click", (e) => {
         e.preventDefault();
         addTask.setAttribute("style", "display:none;");
