@@ -1,4 +1,4 @@
-import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, cancelTaskForm, taskDescription } from "../index";
+import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, cancelTaskForm, addTaskToProject, taskDescription } from "../index";
 import { modalAdd } from "./modal";
 
 const noProject= document.createElement("h2");
@@ -18,8 +18,9 @@ export const displayCurrentProject = (project) => {
     displayTitle(project);
     displayDescription(project);
     displayCurrentTasks();
-    addTaskForm();
-    closeTaskForm();
+    openTaskFormButton();
+    closeTaskFormButton();
+    pushTaskToProject(project)
 };
 
 const displayTitle = (project) => {
@@ -46,7 +47,7 @@ const displayCurrentTasks = () => {
     tasks.appendChild(currentTasks);
 };
 
-const addTaskForm= () => {
+const openTaskFormButton= () => {
     addTask.addEventListener("click", (e) => {
         e.preventDefault();
         addTask.setAttribute("style", "display:none;");
@@ -54,8 +55,22 @@ const addTaskForm= () => {
     });
 };
 
-const closeTaskForm= () => {
+const closeTaskFormButton= () => {
     cancelTaskForm.addEventListener("click", (e) => {
+        taskForm.reset();
+        e.preventDefault();
+        addTask.setAttribute("style", "display:;");
+        taskForm.setAttribute("style", "display:none;");
+    });
+};
+
+const pushTaskToProject= (project) => {
+    addTaskToProject.addEventListener("click", (e)=> {
+        if (taskDescription.value.length > 0) {
+            project.tasks.push(taskDescription.value);
+        };
+        console.log(project);
+        taskForm.reset();
         e.preventDefault();
         addTask.setAttribute("style", "display:;");
         taskForm.setAttribute("style", "display:none;");
