@@ -70,12 +70,18 @@
 .tasks{
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
 
-.tasks div{
+.projectTasks{
+    display: flex;
+    gap: 20px;
     width: 100%;
     background-color: var(--secondary);
+    font-size: 1.5rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 2px solid white;
+    margin-top: 20px;
 }
 
 .taskForm{
