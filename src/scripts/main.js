@@ -1,4 +1,4 @@
-import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, cancelTaskForm, addTaskToProject, taskDescription } from "../index";
+import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, cancelTaskForm, addTaskToProject, taskDescription, dueDate } from "../index";
 import { modalAdd } from "./modal";
 
 const noProject= document.createElement("h2");
@@ -17,10 +17,10 @@ export const checkProjectEmpty = () => {
 export const displayCurrentProject = (project) => {
     displayTitle(project);
     displayDescription(project);
-    displayCurrentTasks();
+    displayCurrentTasks(project);
+    pushTaskToProject(project);
     openTaskFormButton();
     closeTaskFormButton();
-    pushTaskToProject(project)
 };
 
 const displayTitle = (project) => {
@@ -41,10 +41,19 @@ const displayDescription = (project) => {
     projectDescription.appendChild(currentDescription);
 };
 
-const displayCurrentTasks = () => {
+const displayCurrentTasks = (project) => {
     addTask.setAttribute("style", "display:;");
-    const currentTasks= document.createElement("div");
-    tasks.appendChild(currentTasks);
+    project.tasks.forEach(task => {
+        const currentTasks= document.createElement("div");
+        addTaskToProject.addEventListener("click", () => {
+            currentTasks.remove();
+        });
+        currentTasks.classList.add("projectTasks");
+        tasks.appendChild(currentTasks);
+        const toDo= document.createElement("div");
+        toDo.innerText= task;
+        currentTasks.appendChild(toDo);
+    });
 };
 
 const openTaskFormButton= () => {
@@ -66,13 +75,17 @@ const closeTaskFormButton= () => {
 
 const pushTaskToProject= (project) => {
     addTaskToProject.addEventListener("click", (e)=> {
-        if (taskDescription.value.length > 0) {
-            project.tasks.push(taskDescription.value);
-        };
-        console.log(project);
+        checkTasks(project);
+        displayCurrentTasks(project);
         taskForm.reset();
         e.preventDefault();
         addTask.setAttribute("style", "display:;");
         taskForm.setAttribute("style", "display:none;");
     });
+};
+
+const checkTasks= (project) => {
+    if (taskDescription.value.length > 0) {
+        project.tasks.push(taskDescription.value);
+    };
 };
