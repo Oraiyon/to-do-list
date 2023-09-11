@@ -13,12 +13,15 @@ export const projectDescription= document.querySelector(".projectDescription");
 export const tasks= document.querySelector(".tasks");
 export const taskForm= document.querySelector(".taskForm");
 export const cancelTaskForm= document.querySelector(".cancelTask");
-export const taskDescription= document.querySelector(".taskDescription");
+export const addTaskToProject= document.querySelector(".submitTask");
+export const taskDescription= document.querySelector("#taskDescription");
+export const dueDate= document.querySelector("#dueDate");
 
 export const projects=[];
 
 export const makeProject = (title, description) => {
-    return {title, description};
+    const tasks= [];
+    return {title, description, tasks};
 };
 
 checkProjectEmpty();
