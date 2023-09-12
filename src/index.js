@@ -18,6 +18,8 @@ export const taskDescription= document.querySelector("#taskDescription");
 export const dueDate= document.querySelector("#dueDate");
 export const editProject= document.querySelector(".editProject");
 export const editPen= document.querySelector(".editPen");
+export const cancelEdit= document.querySelector(".cancelEdit");
+export const submitEdit= document.querySelector(".submitEdit");
 
 export const projects=[];
 
