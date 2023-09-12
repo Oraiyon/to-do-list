@@ -1,4 +1,5 @@
 import { projectCards, projects } from "../index";
+import { displayCurrentProject } from "./main";
 import { modalAdd } from "./modal";
 
 export const displayProjects = () => {
@@ -7,14 +8,7 @@ export const displayProjects = () => {
         modalAdd.addEventListener("click", () => {
             card.remove();
         });
-        activeProject(e);
         card.innerText= project.title;
         projectCards.appendChild(card);
-    });
-};
-
-export const activeProject= (e) => {
-    e.target.addEventListener("click", () => {
-        
     });
 };
