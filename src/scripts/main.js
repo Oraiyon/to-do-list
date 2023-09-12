@@ -1,4 +1,4 @@
-import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, cancelTaskForm, addTaskToProject, createTaskObject, editProject, editPen} from "../index";
+import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, cancelTaskForm, addTaskToProject, createTaskObject, editProject, editPen, cancelEdit, submitEdit} from "../index";
 import { modalAdd } from "./modal";
 import { formatDistance } from "date-fns";
 
@@ -24,6 +24,8 @@ export const displayCurrentProject = (project) => {
     closeTaskFormButton();
     showEditPen();
     displayEdits();
+    closeEditFormButton();
+    SubmitEditFormButton();
 };
 
 const displayTitle = (project) => {
@@ -75,8 +77,7 @@ const closeTaskFormButton= () => {
     cancelTaskForm.addEventListener("click", (e) => {
         taskForm.reset();
         e.preventDefault();
-        addTask.setAttribute("style", "display:;");
-        taskForm.setAttribute("style", "display:none;");
+        closeTasks();
     });
 };
 
@@ -86,9 +87,13 @@ const submitTask= (project) => {
         displayCurrentTasks(project);
         taskForm.reset();
         e.preventDefault();
-        addTask.setAttribute("style", "display:;");
-        taskForm.setAttribute("style", "display:none;");
+        closeTasks();
     });
+};
+
+const closeTasks= () => {
+    addTask.setAttribute("style", "display:;");
+    taskForm.setAttribute("style", "display:none;");
 };
 
 const checkTaskLength= (project) => {
@@ -113,4 +118,28 @@ const displayEdits= () => {
         editPen.setAttribute("style", "display: none;");
         editProject.setAttribute("style", "display:flex");
     });
+};
+
+const closeEditFormButton= () => {
+    cancelEdit.addEventListener("click", (e) => {
+        editProject.reset();
+        e.preventDefault();
+        closeEdits();
+    });
+};
+
+const SubmitEditFormButton= () => {
+    cancelEdit.addEventListener("click", (e) => {
+        // EDIT INPUTS
+        editProject.reset();
+        e.preventDefault();
+        closeEdits();
+    });
+};
+
+const closeEdits= () => {
+    projectName.setAttribute("style", "display:;");
+    projectDescription.setAttribute("style", "display:;");
+    editPen.setAttribute("style", "display:flex;");
+    editProject.setAttribute("style", "display:none;");
 };
