@@ -1,5 +1,6 @@
-import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, cancelTaskForm, addTaskToProject, taskDescription, dueDate } from "../index";
+import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, cancelTaskForm, addTaskToProject} from "../index";
 import { modalAdd } from "./modal";
+import { formatDistance, subDays } from "date-fns";
 
 const noProject= document.createElement("h2");
 
@@ -18,7 +19,7 @@ export const displayCurrentProject = (project) => {
     displayTitle(project);
     displayDescription(project);
     displayCurrentTasks(project);
-    pushTaskToProject(project);
+    submitTask(project);
     openTaskFormButton();
     closeTaskFormButton();
 };
@@ -43,7 +44,7 @@ const displayDescription = (project) => {
 
 const displayCurrentTasks = (project) => {
     addTask.setAttribute("style", "display:;");
-    project.tasks.forEach(task => {
+    Object.values(project.tasks).forEach(task => {
         const currentTasks= document.createElement("div");
         addTaskToProject.addEventListener("click", () => {
             currentTasks.remove();
@@ -51,8 +52,13 @@ const displayCurrentTasks = (project) => {
         currentTasks.classList.add("projectTasks");
         tasks.appendChild(currentTasks);
         const toDo= document.createElement("div");
-        toDo.innerText= task;
+        toDo.innerText= task.description;
         currentTasks.appendChild(toDo);
+        const toDoDate= document.createElement("div");
+        let newDate= task.dueDate.split("-");
+        let dateDistance= formatDistance(new Date(newDate[0], (newDate[1]-1), newDate[2]), new Date(), {addSuffix: true});
+        toDoDate.innerText= dateDistance;
+        currentTasks.appendChild(toDoDate);
     });
 };
 
@@ -73,9 +79,9 @@ const closeTaskFormButton= () => {
     });
 };
 
-const pushTaskToProject= (project) => {
+const submitTask= (project) => {
     addTaskToProject.addEventListener("click", (e)=> {
-        checkTasks(project);
+        checkTaskLength(project);
         displayCurrentTasks(project);
         taskForm.reset();
         e.preventDefault();
@@ -84,8 +90,17 @@ const pushTaskToProject= (project) => {
     });
 };
 
-const checkTasks= (project) => {
+const checkTaskLength= (project) => {
     if (taskDescription.value.length > 0) {
-        project.tasks.push(taskDescription.value);
+        pushToProjects(project);
     };
+};
+
+const createTaskObject= (description, dueDate) => {
+    return {description, dueDate};
+};
+
+const pushToProjects= (project) => {
+    const projectToDo= createTaskObject(taskDescription.value, dueDate.value)
+    project.tasks.push(projectToDo);
 };
