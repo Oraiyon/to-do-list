@@ -1,6 +1,6 @@
-import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, cancelTaskForm, addTaskToProject} from "../index";
+import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, cancelTaskForm, addTaskToProject, createTaskObject, editProject, editPen} from "../index";
 import { modalAdd } from "./modal";
-import { formatDistance, subDays } from "date-fns";
+import { formatDistance } from "date-fns";
 
 const noProject= document.createElement("h2");
 
@@ -22,6 +22,8 @@ export const displayCurrentProject = (project) => {
     submitTask(project);
     openTaskFormButton();
     closeTaskFormButton();
+    showEditPen();
+    displayEdits();
 };
 
 const displayTitle = (project) => {
@@ -55,9 +57,8 @@ const displayCurrentTasks = (project) => {
         toDo.innerText= task.description;
         currentTasks.appendChild(toDo);
         const toDoDate= document.createElement("div");
-        let newDate= task.dueDate.split("-");
-        let dateDistance= formatDistance(new Date(newDate[0], (newDate[1]-1), newDate[2]), new Date(), {addSuffix: true});
-        toDoDate.innerText= dateDistance;
+        const newDate= task.dueDate.split("-");
+        toDoDate.innerText= formatDistance(new Date(newDate[0], (newDate[1]-1), newDate[2]), new Date(), {addSuffix: true});
         currentTasks.appendChild(toDoDate);
     });
 };
@@ -96,11 +97,20 @@ const checkTaskLength= (project) => {
     };
 };
 
-const createTaskObject= (description, dueDate) => {
-    return {description, dueDate};
-};
-
 const pushToProjects= (project) => {
     const projectToDo= createTaskObject(taskDescription.value, dueDate.value)
     project.tasks.push(projectToDo);
+};
+
+const showEditPen= () => {
+    editPen.setAttribute("style", "display:flex;");
+};
+
+const displayEdits= () => {
+    editPen.addEventListener("click", () => {
+        projectName.setAttribute("style", "display: none;");
+        projectDescription.setAttribute("style", "display: none;");
+        editPen.setAttribute("style", "display: none;");
+        editProject.setAttribute("style", "display:flex");
+    });
 };
