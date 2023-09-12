@@ -1,5 +1,4 @@
 import { projectCards, projects } from "../index";
-import { displayCurrentProject } from "./main";
 import { modalAdd } from "./modal";
 
 export const displayProjects = () => {
