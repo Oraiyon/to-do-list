@@ -19,8 +19,27 @@
         </div>
         <div class="main">
             <div class="inside">
-                <div class="projectName"></div>
+                <div class="topHeader">
+                    <div class="projectName"></div>
+                    <button class="editPen">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>pencil</title><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                    </button>
+                </div>
                 <div class="projectDescription"></div>
+                <form class="editProject" action="" method="">
+                    <div class="edits">
+                        <div class="editTitle">
+                            <input type="text" id="newName" name="projectName" placeholder="New Name" required maxlength="20">
+                        </div>
+                        <div class="editDescription">
+                            <textarea id="newDescription" name="projectDescription" placeholder="New Description" rows="2" required></textarea>
+                        </div>
+                    </div>
+                    <div class="confirmEdits">
+                        <button class="submitEdit" type="submit">Submit</button>
+                        <button class="cancelEdit">Cancel</button>
+                    </div>
+                </form>
                 <div class="tasks"></div>
                 <button class="addTask">+ Add Task</button>
                 <form class="taskForm" action="" method="">
@@ -29,7 +48,7 @@
                         <input type="date" name="dueDate" id="dueDate" required>
                     </div>
                     <div class="taskButtons">
-                        <button class="submitTask" type="submit">Add Task</button>
+                        <button class="submitTask" type="submit">Submit</button>
                         <button class="cancelTask" >Cancel</button>
                     </div>
                 </form>
@@ -44,7 +63,7 @@
             <textarea id="modalDescription" name="projectDescription" placeholder="Project Description" rows="2" required></textarea>
         </div>
         <div class="modalButtons">
-            <button class="modalAdd" type="submit">Add Project</button>
+            <button class="modalAdd" type="submit">Submit</button>
             <button class="modalCancel">Cancel</button>
         </div>
     </form>
