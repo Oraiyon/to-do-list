@@ -1,4 +1,4 @@
-import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, taskDescription, cancelTaskForm, addTaskToProject, createTaskObject, editProject, editPen, cancelEdit, submitEdit, newName, newDescription} from "../index";
+import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, taskDescription, dueDate, cancelTaskForm, addTaskToProject, createTaskObject, editProject, editPen, cancelEdit, submitEdit, newName, newDescription} from "../index";
 import { modalAdd } from "./modal";
 import { formatDistance } from "date-fns";
 import { displayProjects } from "./sideBar";
@@ -62,13 +62,33 @@ const displayCurrentTasks = (project) => {
         });
         currentTasks.classList.add("projectTasks");
         tasks.appendChild(currentTasks);
+
+        const taskInfo= document.createElement("div");
+        taskInfo.classList.add("taskInfo");
+        currentTasks.appendChild(taskInfo);
+
         const toDo= document.createElement("div");
         toDo.innerText= task.description;
-        currentTasks.appendChild(toDo);
+        taskInfo.appendChild(toDo);
+
         const toDoDate= document.createElement("div");
         const newDate= task.dueDate.split("-");
-        toDoDate.innerText= formatDistance(new Date(newDate[0], (newDate[1]-1), newDate[2]), new Date(), {addSuffix: true});
-        currentTasks.appendChild(toDoDate);
+        toDoDate.innerText= formatDistance(new Date(newDate[0], (newDate[1]-1), newDate[2]), new Date());
+        taskInfo.appendChild(toDoDate);
+
+        const taskControls= document.createElement("div");
+        taskControls.classList.add("taskControls");
+        currentTasks.appendChild(taskControls);
+
+        const editTask= document.createElement("button");
+        editTask.classList.add("editTask");
+        editTask.innerText= "Edit";
+        taskControls.appendChild(editTask);;
+
+        const deleteTask= document.createElement("button");
+        deleteTask.classList.add("deleteTask");
+        deleteTask.innerText= "Delete";
+        taskControls.appendChild(deleteTask);
     });
 };
 
@@ -110,7 +130,7 @@ const checkTaskLength= (project) => {
 };
 
 const pushToProjects= (project) => {
-    const projectToDo= createTaskObject(taskDescription.value, dueDate.value)
+    const projectToDo= createTaskObject(taskDescription.value, dueDate.value);
     project.tasks.push(projectToDo);
 };
 
