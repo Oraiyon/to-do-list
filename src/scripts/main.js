@@ -1,6 +1,7 @@
 import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, taskDescription, cancelTaskForm, addTaskToProject, createTaskObject, editProject, editPen, cancelEdit, submitEdit, newName, newDescription} from "../index";
 import { modalAdd } from "./modal";
 import { formatDistance } from "date-fns";
+import { displayProjects } from "./sideBar";
 
 const noProject= document.createElement("h2");
 
@@ -137,7 +138,6 @@ const closeEditFormButton= () => {
 const SubmitEditFormButton= (project) => {
     submitEdit.addEventListener("click", (e) => {
         modifyProject(project);
-        console.log(project);
         editProject.reset();
         e.preventDefault();
         closeEdits();
@@ -150,11 +150,13 @@ const modifyProject= (project) => {
         project.description= newDescription.value;
         displayTitle(project);
         displayDescription(project);
+        displayProjects(project);
     };
     if (newName.value.length > 0 && newDescription.value.length === 0) {
         project.title= newName.value;
         displayTitle(project);
         displayDescription(project);
+        displayProjects(project);
     };
     if (newName.value.length === 0 && newDescription.value.length > 0) {
         project.description= newDescription.value;
