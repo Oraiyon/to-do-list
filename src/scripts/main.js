@@ -1,4 +1,4 @@
-import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, cancelTaskForm, addTaskToProject, createTaskObject, editProject, editPen, cancelEdit, submitEdit} from "../index";
+import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, taskDescription, cancelTaskForm, addTaskToProject, createTaskObject, editProject, editPen, cancelEdit, submitEdit, newName, newDescription} from "../index";
 import { modalAdd } from "./modal";
 import { formatDistance } from "date-fns";
 
@@ -25,13 +25,16 @@ export const displayCurrentProject = (project) => {
     showEditPen();
     displayEdits();
     closeEditFormButton();
-    SubmitEditFormButton();
+    SubmitEditFormButton(project);
 };
 
 const displayTitle = (project) => {
     const currentTitle= document.createElement("h2");
     currentTitle.innerText= project.title;
     modalAdd.addEventListener("click", () => {
+        currentTitle.remove();
+    });
+    submitEdit.addEventListener("click", () => {
         currentTitle.remove();
     });
     projectName.appendChild(currentTitle);
@@ -41,6 +44,9 @@ const displayDescription = (project) => {
     const currentDescription= document.createElement("div");
     currentDescription.innerText= project.description;
     modalAdd.addEventListener("click", () => {
+        currentDescription.remove();
+    });
+    submitEdit.addEventListener("click", () => {
         currentDescription.remove();
     });
     projectDescription.appendChild(currentDescription);
@@ -128,13 +134,37 @@ const closeEditFormButton= () => {
     });
 };
 
-const SubmitEditFormButton= () => {
-    cancelEdit.addEventListener("click", (e) => {
-        // EDIT INPUTS
+const SubmitEditFormButton= (project) => {
+    submitEdit.addEventListener("click", (e) => {
+        modifyProject(project);
+        console.log(project);
         editProject.reset();
         e.preventDefault();
         closeEdits();
     });
+};
+
+const modifyProject= (project) => {
+    if (newName.value.length > 0 && newDescription.value.length > 0) {
+        project.title= newName.value;
+        project.description= newDescription.value;
+        displayTitle(project);
+        displayDescription(project);
+    };
+    if (newName.value.length > 0 && newDescription.value.length === 0) {
+        project.title= newName.value;
+        displayTitle(project);
+        displayDescription(project);
+    };
+    if (newName.value.length === 0 && newDescription.value.length > 0) {
+        project.description= newDescription.value;
+        displayTitle(project);
+        displayDescription(project);
+    };
+    if (newName.value.length === 0 && newDescription.value.length === 0) {
+        displayTitle(project);
+        displayDescription(project);
+    };
 };
 
 const closeEdits= () => {
