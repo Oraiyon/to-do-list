@@ -20,6 +20,8 @@ export const editProject= document.querySelector(".editProject");
 export const editPen= document.querySelector(".editPen");
 export const cancelEdit= document.querySelector(".cancelEdit");
 export const submitEdit= document.querySelector(".submitEdit");
+export const newName= document.querySelector("#newName");
+export const newDescription= document.querySelector("#newDescription");
 
 export const projects=[];
 
