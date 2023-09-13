@@ -151,19 +151,16 @@ const modifyProject= (project) => {
         displayTitle(project);
         displayDescription(project);
         displayProjects(project);
-    };
-    if (newName.value.length > 0 && newDescription.value.length === 0) {
+    } else if (newName.value.length > 0 && newDescription.value.length === 0) {
         project.title= newName.value;
         displayTitle(project);
         displayDescription(project);
         displayProjects(project);
-    };
-    if (newName.value.length === 0 && newDescription.value.length > 0) {
+    } else if (newName.value.length === 0 && newDescription.value.length > 0) {
         project.description= newDescription.value;
         displayTitle(project);
         displayDescription(project);
-    };
-    if (newName.value.length === 0 && newDescription.value.length === 0) {
+    } else {
         displayTitle(project);
         displayDescription(project);
     };
