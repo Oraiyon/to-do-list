@@ -89,8 +89,13 @@ const displayCurrentTasks = (project) => {
             currentTasks.setAttribute("style", "display:none;");
             addTask.setAttribute("style", "display:none;");
             taskForm.setAttribute("style", "display:flex;");
-            
-            // closeTaskFormButton();
+            addTaskToProject.removeEventListener("click", submitTask);
+            addTaskToProject.addEventListener("click", () => {
+                //
+                task.description= taskDescription.value;
+                task.dueDate= dueDate.value;
+                //
+            });
         });
 
         const deleteTaskButton= document.createElement("button");
@@ -100,7 +105,7 @@ const displayCurrentTasks = (project) => {
 
         deleteTaskButton.addEventListener("click", () => {
             currentTasks.remove();
-            let i= Object.values(project.tasks).indexOf(task);
+            const i= Object.values(project.tasks).indexOf(task);
             project.tasks.splice(i,1);
             console.log(project);
         });
@@ -149,12 +154,6 @@ const pushToProjects= (project) => {
     const projectToDo= createTaskObject(taskDescription.value, dueDate.value);
     project.tasks.push(projectToDo);
 };
-
-// const editTask= (project) => {
-//     project.task= taskDescription.value;
-//     project.dueDate= dueDate.value;
-//     console.log(project);
-// };
 
 const showEditPen= () => {
     editPen.setAttribute("style", "display:flex;");
