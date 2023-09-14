@@ -80,16 +80,32 @@ const displayCurrentTasks = (project) => {
         taskControls.classList.add("taskControls");
         currentTasks.appendChild(taskControls);
 
-        const editTask= document.createElement("button");
-        editTask.classList.add("editTask");
-        editTask.innerText= "Edit";
-        taskControls.appendChild(editTask);;
+        const editTaskButton= document.createElement("button");
+        editTaskButton.classList.add("editTask");
+        editTaskButton.innerText= "Edit";
+        taskControls.appendChild(editTaskButton);;
 
-        const deleteTask= document.createElement("button");
-        deleteTask.classList.add("deleteTask");
-        deleteTask.innerText= "Delete";
-        taskControls.appendChild(deleteTask);
+        editTaskButton.addEventListener("click", () => {
+            currentTasks.setAttribute("style", "display:none;");
+            addTask.setAttribute("style", "display:none;");
+            taskForm.setAttribute("style", "display:flex;");
+            
+            // closeTaskFormButton();
+        });
+
+        const deleteTaskButton= document.createElement("button");
+        deleteTaskButton.classList.add("deleteTask");
+        deleteTaskButton.innerText= "Delete";
+        taskControls.appendChild(deleteTaskButton);
+
+        deleteTaskButton.addEventListener("click", () => {
+            currentTasks.remove();
+            let i= Object.values(project.tasks).indexOf(task);
+            project.tasks.splice(i,1);
+            console.log(project);
+        });
     });
+    console.log(project);
 };
 
 const openTaskFormButton= () => {
@@ -133,6 +149,12 @@ const pushToProjects= (project) => {
     const projectToDo= createTaskObject(taskDescription.value, dueDate.value);
     project.tasks.push(projectToDo);
 };
+
+// const editTask= (project) => {
+//     project.task= taskDescription.value;
+//     project.dueDate= dueDate.value;
+//     console.log(project);
+// };
 
 const showEditPen= () => {
     editPen.setAttribute("style", "display:flex;");
