@@ -80,24 +80,6 @@ const displayCurrentTasks = (project) => {
         taskControls.classList.add("taskControls");
         currentTasks.appendChild(taskControls);
 
-        const editTaskButton= document.createElement("button");
-        editTaskButton.classList.add("editTask");
-        editTaskButton.innerText= "Edit";
-        taskControls.appendChild(editTaskButton);;
-
-        editTaskButton.addEventListener("click", () => {
-            currentTasks.setAttribute("style", "display:none;");
-            addTask.setAttribute("style", "display:none;");
-            taskForm.setAttribute("style", "display:flex;");
-            addTaskToProject.removeEventListener("click", submitTask);
-            addTaskToProject.addEventListener("click", () => {
-                //
-                task.description= taskDescription.value;
-                task.dueDate= dueDate.value;
-                //
-            });
-        });
-
         const deleteTaskButton= document.createElement("button");
         deleteTaskButton.classList.add("deleteTask");
         deleteTaskButton.innerText= "Delete";
@@ -107,9 +89,11 @@ const displayCurrentTasks = (project) => {
             currentTasks.remove();
             const i= Object.values(project.tasks).indexOf(task);
             project.tasks.splice(i,1);
+            //
             console.log(project);
         });
     });
+    //
     console.log(project);
 };
 
@@ -123,9 +107,7 @@ const openTaskFormButton= () => {
 
 const closeTaskFormButton= () => {
     cancelTaskForm.addEventListener("click", (e) => {
-        taskForm.reset();
-        e.preventDefault();
-        closeTasks();
+        closeTasks(e);
     });
 };
 
@@ -135,11 +117,13 @@ const submitTask= (project) => {
         displayCurrentTasks(project);
         taskForm.reset();
         e.preventDefault();
-        closeTasks();
+        closeTasks(e);
     });
 };
 
-const closeTasks= () => {
+const closeTasks= (e) => {
+    taskForm.reset();
+    e.preventDefault();
     addTask.setAttribute("style", "display:;");
     taskForm.setAttribute("style", "display:none;");
 };
