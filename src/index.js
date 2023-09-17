@@ -1,9 +1,7 @@
 import "./styles/main.css";
 import "./styles/sideBar.css";
 import "./styles/modal.css";
-import { addProjectButton, closeModalButton, submitModalButton } from "./scripts/modal";
-import { displayProjects } from "./scripts/sideBar";
-import { checkProjectEmpty, displayCurrentProject } from "./scripts/main";
+import { addProjectButton, closeModalButton, submitModalButton, modalAdd } from "./scripts/modal";
 
 export const projectCards= document.querySelector(".projectCards");
 export const addTask= document.querySelector(".addTask");
@@ -17,28 +15,19 @@ export const addTaskToProject= document.querySelector(".submitTask");
 export const taskDescription= document.querySelector("#taskDescription");
 export const dueDate= document.querySelector("#dueDate");
 export const editProject= document.querySelector(".editProject");
-export const editPen= document.querySelector(".editPen");
 export const cancelEdit= document.querySelector(".cancelEdit");
 export const submitEdit= document.querySelector(".submitEdit");
 export const newName= document.querySelector("#newName");
 export const newDescription= document.querySelector("#newDescription");
 
-export const projects=[];
+export const projects= [];
 
 export const makeProject = (title, description) => {
+    const id= Date.now().toString();
     const tasks= [];
-    return {title, description, tasks};
+    return {id, title, description, tasks};
 };
 
 export const createTaskObject= (description, dueDate) => {
     return {description, dueDate};
-};
-
-checkProjectEmpty();
-
-export const addProjectToProjects= (project) => {
-    projects.push(project);
-    displayCurrentProject(project);
-    displayProjects();
-    checkProjectEmpty();
 };
