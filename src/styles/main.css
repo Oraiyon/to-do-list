@@ -211,23 +211,6 @@
     background-color: var(--accent);
 }
 
-.editPen{
-    display: none;
-    height: fit-content;
-    align-self: flex-end;
-    margin-left: 40px;
-}
-
-.editPen svg{
-    width: 30px;
-    fill: white;
-    border-radius: 4px;
-}
-
-.editPen svg:hover{
-    background-color: var(--secondary);
-}
-
 .topHeader{
     display: flex;
     justify-content: space-between;
