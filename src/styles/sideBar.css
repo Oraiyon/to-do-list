@@ -73,7 +73,6 @@ button{
 }
 
 #editProject, #deleteProject{
-    margin-bottom: 10px;
     width: 50%;
     font-size: 1rem;
     text-align: center;
