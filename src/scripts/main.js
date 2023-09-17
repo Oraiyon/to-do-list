@@ -1,33 +1,7 @@
-import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, taskDescription, dueDate, cancelTaskForm, addTaskToProject, createTaskObject, editProject, editPen, cancelEdit, submitEdit, newName, newDescription} from "../index";
+import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, taskDescription, dueDate, cancelTaskForm, addTaskToProject, createTaskObject, editProject, cancelEdit, submitEdit, newName, newDescription} from "../index";
 import { modalAdd } from "./modal";
 import { formatDistance } from "date-fns";
 import { displayProjects } from "./sideBar";
-
-const noProject= document.createElement("h2");
-
-export const checkProjectEmpty = () => {
-    if (projects.length === 0) {
-        addTask.setAttribute("style", "display:none;");
-        noProject.classList.add("noProject");
-        noProject.innerText = "No Projects";
-        mainPage.appendChild(noProject);
-    } else {
-        noProject.setAttribute("style", "display:none;");
-    };
-};
-
-export const displayCurrentProject = (project) => {
-    displayTitle(project);
-    displayDescription(project);
-    displayCurrentTasks(project);
-    submitTask(project);
-    openTaskFormButton();
-    closeTaskFormButton();
-    showEditPen();
-    displayEdits();
-    closeEditFormButton();
-    SubmitEditFormButton(project);
-};
 
 const displayTitle = (project) => {
     const currentTitle= document.createElement("h2");
@@ -89,11 +63,9 @@ const displayCurrentTasks = (project) => {
             currentTasks.remove();
             const i= Object.values(project.tasks).indexOf(task);
             project.tasks.splice(i,1);
-            //
             console.log(project);
         });
     });
-    //
     console.log(project);
 };
 
@@ -113,7 +85,6 @@ const closeTaskFormButton= () => {
 
 const submitTask= (project) => {
     addTaskToProject.addEventListener("click", (e)=> {
-        checkTaskLength(project);
         displayCurrentTasks(project);
         taskForm.reset();
         e.preventDefault();
@@ -128,28 +99,15 @@ const closeTasks= (e) => {
     taskForm.setAttribute("style", "display:none;");
 };
 
-const checkTaskLength= (project) => {
-    if (taskDescription.value.length > 0) {
-        pushToProjects(project);
-    };
-};
-
 const pushToProjects= (project) => {
     const projectToDo= createTaskObject(taskDescription.value, dueDate.value);
     project.tasks.push(projectToDo);
 };
 
-const showEditPen= () => {
-    editPen.setAttribute("style", "display:flex;");
-};
-
-const displayEdits= () => {
-    editPen.addEventListener("click", () => {
-        projectName.setAttribute("style", "display: none;");
-        projectDescription.setAttribute("style", "display: none;");
-        editPen.setAttribute("style", "display: none;");
-        editProject.setAttribute("style", "display:flex");
-    });
+export const displayEdits= () => {
+    projectName.setAttribute("style", "display: none;");
+    projectDescription.setAttribute("style", "display: none;");
+    editProject.setAttribute("style", "display:flex");
 };
 
 const closeEditFormButton= () => {
