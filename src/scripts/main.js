@@ -1,33 +1,57 @@
-import { projects, addTask, mainPage, projectName, projectDescription, tasks, taskForm, taskDescription, dueDate, cancelTaskForm, addTaskToProject, createTaskObject, editProject, cancelEdit, submitEdit, newName, newDescription} from "../index";
-import { modalAdd } from "./modal";
+import { createTaskObject } from "../index";
 import { formatDistance } from "date-fns";
 import { displayProjects } from "./sideBar";
+import { clearElement } from "./sideBar";
+
+const addTask = document.querySelector(".addTask");
+const mainPage= document.querySelector(".main");
+const projectName= document.querySelector(".projectName");
+const projectDescription= document.querySelector(".projectDescription");
+const tasks= document.querySelector(".tasks");
+const taskForm= document.querySelector(".taskForm");
+const cancelTaskForm= document.querySelector(".cancelTask");
+const addTaskToProject= document.querySelector(".submitTask");
+const taskDescription= document.querySelector("#taskDescription");
+const dueDate= document.querySelector("#dueDate");
+const editProject= document.querySelector(".editProject");
+const cancelEdit= document.querySelector(".cancelEdit");
+const submitEdit= document.querySelector(".submitEdit");
+const newName= document.querySelector("#newName");
+const newDescription= document.querySelector("#newDescription");
+
+export const hideMain = () => {
+    mainPage.setAttribute("style", "display:none;");
+};
+
+export const showMain = () => {
+    mainPage.setAttribute("style", "display: flex;");
+};
+
+export const displayCurrentProject = (project) => {
+    displayTitle(project);
+    displayDescription(project);
+    displayCurrentTasks(project);
+    openTaskFormButton();
+    closeTaskFormButton();
+    submitTask(project);
+};
 
 const displayTitle = (project) => {
+    clearElement(projectName)
     const currentTitle= document.createElement("h2");
     currentTitle.innerText= project.title;
-    modalAdd.addEventListener("click", () => {
-        currentTitle.remove();
-    });
-    submitEdit.addEventListener("click", () => {
-        currentTitle.remove();
-    });
     projectName.appendChild(currentTitle);
 };
 
 const displayDescription = (project) => {
+    clearElement(projectDescription)
     const currentDescription= document.createElement("div");
     currentDescription.innerText= project.description;
-    modalAdd.addEventListener("click", () => {
-        currentDescription.remove();
-    });
-    submitEdit.addEventListener("click", () => {
-        currentDescription.remove();
-    });
     projectDescription.appendChild(currentDescription);
 };
 
 const displayCurrentTasks = (project) => {
+    clearElement(tasks);
     addTask.setAttribute("style", "display:;");
     Object.values(project.tasks).forEach(task => {
         const currentTasks= document.createElement("div");
@@ -85,11 +109,17 @@ const closeTaskFormButton= () => {
 
 const submitTask= (project) => {
     addTaskToProject.addEventListener("click", (e)=> {
+        pushToProjects(project);
         displayCurrentTasks(project);
         taskForm.reset();
         e.preventDefault();
         closeTasks(e);
     });
+};
+
+const pushToProjects= (project) => {
+    const projectToDo= createTaskObject(taskDescription.value, dueDate.value);
+    project.tasks.push(projectToDo);
 };
 
 const closeTasks= (e) => {
@@ -99,15 +129,11 @@ const closeTasks= (e) => {
     taskForm.setAttribute("style", "display:none;");
 };
 
-const pushToProjects= (project) => {
-    const projectToDo= createTaskObject(taskDescription.value, dueDate.value);
-    project.tasks.push(projectToDo);
-};
-
-export const displayEdits= () => {
+export const displayEdits= (project) => {
     projectName.setAttribute("style", "display: none;");
     projectDescription.setAttribute("style", "display: none;");
     editProject.setAttribute("style", "display:flex");
+    editFormActions(project);
 };
 
 const closeEditFormButton= () => {
@@ -118,13 +144,18 @@ const closeEditFormButton= () => {
     });
 };
 
-const SubmitEditFormButton= (project) => {
+const submitEditFormButton= (project) => {
     submitEdit.addEventListener("click", (e) => {
         modifyProject(project);
         editProject.reset();
         e.preventDefault();
         closeEdits();
     });
+};
+
+const editFormActions = (project) => {
+    closeEditFormButton();
+    submitEditFormButton(project);
 };
 
 const modifyProject= (project) => {
@@ -152,6 +183,5 @@ const modifyProject= (project) => {
 const closeEdits= () => {
     projectName.setAttribute("style", "display:;");
     projectDescription.setAttribute("style", "display:;");
-    editPen.setAttribute("style", "display:flex;");
     editProject.setAttribute("style", "display:none;");
 };

@@ -1,27 +1,27 @@
 import { projects } from "../index";
-import { displayEdits } from "./main";
+import { displayCurrentProject, displayEdits, hideMain, showMain } from "./main";
 
 const projectCards= document.querySelector(".projectCards");
 
-let currentProject = null;
+let currentProjectId = null;
 
 export const displayProjects = () => {
-    clearCards(projectCards);
+    clearElement(projectCards);
     projects.forEach(project => {
         const card= document.createElement("button");
         card.classList.add("titleCard")
         card.id = project.id;
         card.innerText = project.title;
         projectCards.appendChild(card);
-        
-        if (project.id === currentProject) {
-            card.id = "currentProject";
-        };
 
         card.addEventListener("click", () => {
-            currentProject = project.id;
+            currentProjectId = project.id;
             displayProjects();
         });
+
+        if (currentProjectId === project.id) {
+            card.id = "currentProject";
+        };
 
         const projectButtons= document.createElement("div");
         projectButtons.classList.add("projectButtons");
@@ -32,7 +32,9 @@ export const displayProjects = () => {
         editProjectButton.innerText= "Edit";
         projectButtons.appendChild(editProjectButton);
 
-        editProjectButton.addEventListener("click", displayEdits);
+        editProjectButton.addEventListener("click", () => {
+            displayEdits(currentProject);
+        });
 
         const deleteProjectButton= document.createElement("button");
         deleteProjectButton.id = "deleteProject";
@@ -47,10 +49,23 @@ export const displayProjects = () => {
             editProjectButton.setAttribute("style", "display:none;");
         });
     });
+
+    const currentProject = projects.find(project => project.id === currentProjectId);
+
+    displayMain(currentProject)
 };
 
-const clearCards= (element) => {
+export const clearElement= (element) => {
     while (element.firstChild) {
         element.removeChild(element.firstChild);
     };
 };
+
+const displayMain = (project) => {
+    if (currentProjectId === null) {
+        hideMain();
+    } else {
+        showMain();
+        displayCurrentProject(project);
+    };
+}; 

@@ -1,5 +1,5 @@
 import { makeProject, projects} from "../index";
-import { currentProject, displayProjects } from "./sideBar";
+import { displayProjects } from "./sideBar";
 
 const addProject= document.querySelector(".addProject");
 const formModal= document.querySelector(".formModal");
