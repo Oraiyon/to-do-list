@@ -13,21 +13,19 @@
 .container{
     display: flex;
     height: 100vh;
+    background-color: var(--primary);
 }
 
 .main{
     background-color: var(--primary);
     width: 75%;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
 }
 
 .main button{
     width: fit-content;
-}
-
-.main button{
     background-color: var(--primary);
 }
 
@@ -43,11 +41,6 @@
 .addTask::first-letter{
     color: var(--accent);
     font-size: 1.5rem;
-}
-
-.noProject{
-    margin: auto auto;
-    font-size: 2rem;
 }
 
 .inside{
